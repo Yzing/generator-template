@@ -1,0 +1,19 @@
+{
+  "name": "generator-template",
+  "version": "0.0.1",
+  "description": "template created by yo",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^3.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yanzhi",
+  "license": "ISC"
+}
