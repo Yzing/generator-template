@@ -3,28 +3,35 @@ var Generator = require('yeoman-generator');
 module.exports = class extends Generator {
     constructor(args, opts) {
         super(args, opts);
-        // this.argument('name', { type: String, required: true });
-    }
-    async prompting() {
-        this.answers = await this.prompt([{
-            type: 'input',
-            name: 'name',
-            message: 'input your project name:',
-            default: this.options.name,
-        }])
+        this.option('spa', {
+            type: Boolean,
+            desc: 'Use the single page template to init your project',
+        });
+        this.templateList = ['spa'];
     }
 
-    writing() {
-        const projectPath = this.destinationPath(`${this.options.name}`);
-        if (this.fs.exists(projectPath)) {
-            this.spawnCommandSync(`cd ${projectPath} && ls`);
-            return;
-            // throw new Error('the directory is exists');
+    async prompting() {
+        const templateList = this.templateList;
+        for (let v of templateList) {
+            if (v in this.options && this.options[v]) {
+                this.template = v;
+                return;
+            }
         }
-        this.fs.copyTpl(
-            this.templatePath('*'),
-            this.destinationPath(`${this.options.name}`),
-            { title: this.answers.name },
-        );
+        const promptList = [{
+            type: 'list',
+            name: 'template',
+            message: 'which template do you like to init your project ?',
+            choices: templateList
+        }];
+        this.anwsers = await this.prompt(promptList);
+        this.template = this.anwsers.template;
+    }
+
+
+    default() {
+        this.spawnCommandSync('yo', [`msfe:${this.template}`], {
+            stdio: 'inherit'
+        });
     }
 };
