@@ -1,10 +1,15 @@
 {
     "name": "generator-msfe",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "description": "MFW前端脚手架工具",
     "files": [
         "generators"
     ],
+    "homepage": "https://gitlab.mfwdev.com/yanzhi/generator-msfe",
+    "repository": {
+        "type" : "git",
+        "url" : "https://gitlab.mfwdev.com/yanzhi/generator-msfe.git"
+    },
     "keywords": [
         "generator"
     ],

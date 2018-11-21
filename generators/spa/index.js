@@ -41,23 +41,14 @@ module.exports = class extends Generator {
 
     writing() {
         this.projectPath = this.destinationPath(`${this.answers.name}`);
-        // this._checkPath();
         this._writingPackageJSON();
         this._writingMeta();
+        this._writingHtml();
         this._writingBuildDir();
         this._writingConfigDir();
         this._writingSrcDir();
         this._writingSrcDir();
         // this._writingStaticDir();
-    }
-
-    _checkPath() {
-        if (this.fs.exists(this.projectPath)) {
-            this.spawnCommandSync(`ls ${this.projectPath}`).on('message', m => {
-                console.log(m);
-            });
-            return;
-        }
     }
 
     _writingPackageJSON() {
